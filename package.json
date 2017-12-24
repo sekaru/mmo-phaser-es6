@@ -1,22 +1,19 @@
 {
-  "name": "mmo-phaser-es6",
+  "name": "phaser-multiplayer-base",
   "version": "1.0.0",
-  "description": "ES6 version of basic-mmo-phaser by Jerome Renaux",
+  "description": "Phaser multiplayer base",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2",
+    "start": "nodemon server.js --exec babel-node --presets env",
     "dev": "webpack --progress --colors"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TVScoundrel/mmo-phaser-es6.git"
+    "url": "git+https://github.com/sekaru/phaser-multiplayer-base"
   },
-  "author": "Tom Van Schoor",
+  "author": "Sleepy Studios",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TVScoundrel/mmo-phaser-es6/issues"
-  },
-  "homepage": "https://github.com/TVScoundrel/mmo-phaser-es6#readme",
+  "homepage": "https://github.com/sekaru/phaser-multiplayer-base",
   "dependencies": {
     "express": "^4.15.3",
     "phaser": "^2.6.2",
@@ -26,12 +23,11 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-register": "^6.24.1",
     "html-webpack-plugin": "^2.28.0",
     "mocha": "^3.4.1",
     "nodemon": "^1.11.0",
-    "webpack": "^2.5.1"
+    "webpack": "^3.10.0"
   }
 }

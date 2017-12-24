@@ -35,7 +35,7 @@ class Game extends Phaser.State {
         this.playerMap[id] = this.game.add.sprite(x, y, 'sprite');
     }
 
-    movePlayer = function(id, x, y){
+    movePlayer(id, x, y) {
         var player = this.playerMap[id];
         var distance = Phaser.Math.distance(player.x, player.y, x, y);
         var duration = distance * 10;
@@ -44,7 +44,7 @@ class Game extends Phaser.State {
         tween.start();
     }
 
-    removePlayer = function(id){
+    removePlayer(id) {
         this.playerMap[id].destroy();
         delete this.playerMap[id];
     }
