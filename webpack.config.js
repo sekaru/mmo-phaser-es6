@@ -1,16 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
-const webpack = require('webpack'); //to access built-in plugins
-var path = require('path')
-
-var serverConfig = {
-  target: 'node',
-  entry: "./_server/index.js",
-  watch: true,
-  output: {
-    path: path.resolve(__dirname, 'bin/server'),
-    filename: 'index.js'
-  }
-}
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+var path = require('path');
 
 var clientConfig = {
   target: 'web',

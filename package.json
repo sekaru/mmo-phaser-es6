@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js --exec babel-node --presets env",
-    "dev": "webpack --progress --colors"
+    "build": "webpack --progress --colors"
   },
   "repository": {
     "type": "git",
