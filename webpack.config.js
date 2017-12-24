@@ -14,7 +14,7 @@ var serverConfig = {
 
 var clientConfig = {
   target: 'web',
-  entry: "./_client/index.js",
+  entry: "./client/index.js",
   watch: true,
   output: {
     path: path.resolve(__dirname, 'bin/client'),
@@ -38,7 +38,7 @@ var clientConfig = {
         comments: false
       }
     }),
-    new HtmlWebpackPlugin({template: './_client/index.html'})
+    new HtmlWebpackPlugin({template: './client/index.html'})
   ]
 }
 
