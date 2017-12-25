@@ -1,10 +1,12 @@
 import Client from '../services/Client'
+import _ from 'lodash'
 
 class Game extends Phaser.State {
   constructor() {
     super();
     this.client = new Client(this);
-    this.playerMap = {};
+    this.players = [];
+    this.myID = -1;
   }
 
   preload() {
@@ -30,17 +32,24 @@ class Game extends Phaser.State {
     this.client.requestJoin();
   }
 
-  getCoords(layer, pointer) {
+  getPlayer(id) {
+    return _.find(this.players, {id: id});
+  }
+
+  getCoords(layer, pointer) {  
     this.client.sendClick(pointer.worldX, pointer.worldY);
   }
 
   addPlayer(id, x, y) {
-    this.playerMap[id] = this.game.add.sprite(x, y, 'sprite');
-    this.game.camera.follow(this.playerMap[id], Phaser.Camera.FOLLOW_TOPDOWN);        
+    let sprite = this.game.add.sprite(x, y, 'sprite');
+    let player = Object.assign(sprite, {id: id});
+
+    this.players.push(player);
+    if(id===this.myID) this.game.camera.follow(sprite);        
   }
 
   movePlayer(id, x, y) {
-    let player = this.playerMap[id];
+    let player = this.getPlayer(id);
     let distance = Phaser.Math.distance(player.x, player.y, x, y);
     let duration = distance * 5;
     let tween = this.game.add.tween(player);
@@ -49,8 +58,8 @@ class Game extends Phaser.State {
   }
 
   removePlayer(id) {
-    this.playerMap[id].destroy();
-    delete this.playerMap[id]; // todo: bad
+    this.getPlayer(id).destroy();
+    this.players.splice(this.players.indexOf(this.getPlayer(id)));
   }
 }
 

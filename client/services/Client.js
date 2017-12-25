@@ -1,9 +1,18 @@
 import Game from '../states/Game'
 
 export default class Client {
-  constructor(app) {
+  constructor(game) {
     this.socket = io.connect();
-    let game = app;
+
+    this.socket.on('disconnect', () => {
+      setTimeout(() => {
+        location.reload();        
+      }, 2000);
+    });
+
+    this.socket.on('myid', data => {
+      game.myID = data.id;
+    });
 
     this.socket.on('newplayer', data => {
       game.addPlayer(data.id, data.x, data.y);
