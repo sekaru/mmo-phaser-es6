@@ -15,7 +15,7 @@ export default class Client {
       }
     });
 
-    this.socket.on('move', data => {
+    this.socket.on('playermove', data => {
       game.movePlayer(data.id, data.x, data.y);
     });
 
@@ -29,6 +29,6 @@ export default class Client {
   }
 
   sendClick(x, y) {
-    this.socket.emit('click', { x, y });
+    this.socket.emit('playermove', { x, y });
   }
 }

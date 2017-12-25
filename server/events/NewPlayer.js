@@ -1,4 +1,4 @@
-import ClickEvent from './Click'
+import MoveEvent from './Move'
 import DisconnectEvent from './Disconnect'
 
 class NewPlayerEvent {
@@ -6,14 +6,14 @@ class NewPlayerEvent {
     socket.on('newplayer', () => {
       socket.player = {
         id: game.lastPlayerID++,
-        x: game.rand(100,400),
-        y: game.rand(100,400)
+        x: game.rand(100, 400),
+        y: game.rand(100, 400)
       }
 
       socket.emit('allplayers', game.getAllPlayers());
       socket.broadcast.emit('newplayer', socket.player);
 
-      new ClickEvent(game, socket);
+      new MoveEvent(game, socket);
       new DisconnectEvent(game, socket);
     });
   }
