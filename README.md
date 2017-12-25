@@ -1,4 +1,4 @@
-# phaser-multiplayer-base
+# Phaser Multiplayer Base
 
 Forked from this project: [mmo-phaser-es6](https://github.com/TVScoundrel/mmo-phaser-es6.git)
 
@@ -12,13 +12,7 @@ npm i
 ```
 
 ## Starting your server
-Build the client files:
-
-```
-npm run build
-```
-
-Now you can start the server by typing:
+Build the client files and run the server:
 
 ```
 npm start
