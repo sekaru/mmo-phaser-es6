@@ -1,21 +1,21 @@
-# mmo-phaser-es6
+# phaser-multiplayer-base
 
-This Repository is based off a different project: [basic-mmo-phaser](https://github.com/Jerenaux/basic-mmo-phaser) with thanks to [Jerome Renaux](https://github.com/Jerenaux).
+Forked from this project: [mmo-phaser-es6](https://github.com/TVScoundrel/mmo-phaser-es6.git)
 
-This project here is a succesful attempt at refactoring before mentioned repository into ES2015.
+Building on top of that project, this one aims to be a bit more modern and a bit more of a better base (mostly suited to my projects)
 
 ## Download this repository and get all dependencies
 ```
-git clone https://github.com/TVScoundrel/mmo-phaser-es6.git
-cd mmo-phaser-es6
-npm install
+git clone https://github.com/sekaru/phaser-multiplayer-base.git
+cd phaser-multiplayer-base
+npm i
 ```
 
 ## Starting your server
-This skeleton uses webpack to turn your beautiful ES2015 code into something your browser understands, so before starting the server you should pack the code that is there by opening a terminal and typing:
+Build the client files:
 
 ```
-npm run dev
+npm run build
 ```
 
 Now you can start the server by typing:

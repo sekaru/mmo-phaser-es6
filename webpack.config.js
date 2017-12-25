@@ -4,7 +4,9 @@ var path = require('path');
 
 var clientConfig = {
   target: 'web',
-  entry: "./client/index.js",
+  entry: [
+    './client/index.js'
+  ],
   watch: true,
   output: {
     path: path.resolve(__dirname, 'bin/client'),
@@ -15,7 +17,7 @@ var clientConfig = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loaders: ["babel-loader"]
+        loaders: ['babel-loader']
       }
     ]
   },

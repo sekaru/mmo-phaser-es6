@@ -4,8 +4,7 @@
   "description": "Phaser multiplayer base",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js --exec babel-node --presets env",
-    "build": "webpack --progress --colors"
+    "start": "concurrently 'nodemon server.js --exec babel-node --presets env' 'webpack --progress --colors'"
   },
   "repository": {
     "type": "git",
@@ -16,7 +15,6 @@
   "homepage": "https://github.com/sekaru/phaser-multiplayer-base",
   "dependencies": {
     "express": "^4.15.3",
-    "phaser": "^2.6.2",
     "socket.io": "^2.0.1"
   },
   "devDependencies": {
@@ -25,7 +23,8 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.24.1",
-    "html-webpack-plugin": "^2.28.0",
+    "concurrently": "^3.5.1",
+    "html-webpack-plugin": "^2.30.1",
     "mocha": "^3.4.1",
     "nodemon": "^1.11.0",
     "webpack": "^3.10.0"

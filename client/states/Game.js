@@ -40,7 +40,7 @@ class Game extends Phaser.State {
   movePlayer(id, x, y) {
     let player = this.playerMap[id];
     let distance = Phaser.Math.distance(player.x, player.y, x, y);
-    let duration = distance * 10;
+    let duration = distance * 5;
     let tween = this.game.add.tween(player);
     tween.to({ x, y }, duration);
     tween.start();

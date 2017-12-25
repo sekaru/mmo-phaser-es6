@@ -10,13 +10,13 @@ export default class Client {
     });
 
     this.socket.on('allplayers', data => {
-      for(let i = 0; i < data.length; i++) {
+      for(let i=0; i<data.length; i++) {
         game.addPlayer(data[i].id, data[i].x, data[i].y);
       }
     });
 
     this.socket.on('move', data => {
-      game.movePlayer(data.id,data.x,data.y);
+      game.movePlayer(data.id, data.x, data.y);
     });
 
     this.socket.on('remove', id => {
