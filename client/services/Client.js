@@ -7,7 +7,7 @@ export default class Client {
     this.socket.on('disconnect', () => {
       setTimeout(() => {
         location.reload();        
-      }, 2000);
+      }, 4000);
     });
 
     this.socket.on('myid', data => {
@@ -37,7 +37,7 @@ export default class Client {
     this.socket.emit('newplayer');
   }
 
-  sendClick(x, y) {
+  sendMove(x, y) {
     this.socket.emit('playermove', { x, y });
   }
 }

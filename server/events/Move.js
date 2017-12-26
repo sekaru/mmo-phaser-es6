@@ -1,9 +1,13 @@
 class MoveEvent {
   constructor(game, socket) {
     socket.on('playermove', data => {
-      socket.player.x = data.x - 30;
-      socket.player.y = data.y - 40;
-      game.io.emit('playermove', socket.player);
+      let moved = !(data.x==socket.player.x && data.y==socket.player.y);
+
+      if(moved) {
+        socket.player.x = data.x;
+        socket.player.y = data.y;
+        socket.broadcast.emit('playermove', socket.player)
+      }
     });
   }
 }

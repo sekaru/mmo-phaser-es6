@@ -7,6 +7,7 @@ class Game extends Phaser.State {
     this.client = new Client(this);
     this.players = [];
     this.myID = -1;
+    this.speed = 4;
   }
 
   preload() {
@@ -26,10 +27,39 @@ class Game extends Phaser.State {
       layer = map.createLayer(i);
     }
 
-    layer.inputEnabled = true;
-    layer.events.onInputUp.add(this.getCoords, this);
+    // layer.inputEnabled = true;
+    // layer.events.onInputUp.add(this.getCoords, this);
 
     this.client.requestJoin();
+  }
+
+  update() {
+    let player = this.getPlayer(this.myID);   
+    let moved = false;
+
+    if(!player) return;     
+
+    if(this.game.input.keyboard.isDown(Phaser.KeyCode.W)) {
+      player.y -= this.speed;
+      moved = true;    
+    }
+
+    if(this.game.input.keyboard.isDown(Phaser.KeyCode.A)) {
+      player.x -= this.speed;
+      moved = true;        
+    }
+    
+    if(this.game.input.keyboard.isDown(Phaser.KeyCode.S)) {
+      player.y += this.speed;
+      moved = true;         
+    }
+
+    if(this.game.input.keyboard.isDown(Phaser.KeyCode.D)) {
+      player.x += this.speed;
+      moved = true;      
+    }   
+    
+    if(moved) this.client.sendMove(player.x, player.y);    
   }
 
   getPlayer(id) {
@@ -37,21 +67,23 @@ class Game extends Phaser.State {
   }
 
   getCoords(layer, pointer) {  
-    this.client.sendClick(pointer.worldX, pointer.worldY);
+    this.client.sendMove(pointer.worldX, pointer.worldY);
   }
 
   addPlayer(id, x, y) {
     let sprite = this.game.add.sprite(x, y, 'sprite');
     let player = Object.assign(sprite, {id: id});
+    this.game.physics.arcade.enable(player);
+    player.body.collideWorldBounds = true;      
 
     this.players.push(player);
-    if(id===this.myID) this.game.camera.follow(sprite);        
+    if(id===this.myID) this.game.camera.follow(sprite);  
   }
 
   movePlayer(id, x, y) {
     let player = this.getPlayer(id);
     let distance = Phaser.Math.distance(player.x, player.y, x, y);
-    let duration = distance * 5;
+    let duration = this.speed;
     let tween = this.game.add.tween(player);
     tween.to({ x, y }, duration);
     tween.start();
