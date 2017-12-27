@@ -15,21 +15,21 @@ export default class Client {
     });
 
     this.socket.on('newplayer', data => {
-      game.addPlayer(data.id, data.x, data.y);
+      game.gameObjectHandler.addPlayer(data.id, data.x, data.y);
     });
 
     this.socket.on('allplayers', data => {
       for(let i=0; i<data.length; i++) {
-        game.addPlayer(data[i].id, data[i].x, data[i].y);
+        game.gameObjectHandler.addPlayer(data[i].id, data[i].x, data[i].y);
       }
     });
 
     this.socket.on('playermove', data => {
-      game.movePlayer(data.id, data.x, data.y);
+      game.gameObjectHandler.movePlayer(data.id, data.x, data.y);
     });
 
     this.socket.on('remove', id => {
-      game.removePlayer(id);
+      game.gameObjectHandler.removePlayer(id);
     });
   }
 
