@@ -1,8 +1,9 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 var path = require('path');
 
-var clientConfig = {
+var config = {
   target: 'web',
   entry: [
     './client/index.js'
@@ -22,16 +23,9 @@ var clientConfig = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
-      }
-    }),
+    new UglifyJsPlugin(),
     new HtmlWebpackPlugin({template: './client/index.html'})
   ]
 }
 
-module.exports = [ clientConfig ];
+module.exports = config;
