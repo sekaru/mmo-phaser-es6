@@ -1,6 +1,6 @@
 import Game from '../states/Game'
 
-export default class Client {
+class Client {
   constructor(game) {
     this.socket = io.connect();
 
@@ -41,3 +41,5 @@ export default class Client {
     this.socket.emit('playermove', { x, y });
   }
 }
+
+export default Client

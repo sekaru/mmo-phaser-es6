@@ -1,12 +1,12 @@
 import Client from '../services/Client'
 import GameObjectHandler from '../services/GameObjectHandler'
 
-export default class Game extends Phaser.State {
+class Game extends Phaser.State {
   constructor() {
     super();
     this.client = new Client(this);
     this.myID = -1;
-    this.speed = 4;
+    this.moveSpeed = 4;
     this.gameObjectHandler = new GameObjectHandler(this);
   }
 
@@ -19,43 +19,51 @@ export default class Game extends Phaser.State {
 
   create() {
     let map = this.add.tilemap('map');    
-    this.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);    
-    map.addTilesetImage('tilesheet', 'tileset');
+    map.addTilesetImage('tilesheet', 'tileset');    
 
     let layer = null;
-    for(let i=0; i<map.layers.length; i++) {
-      layer = map.createLayer(i);
-    }
+    for(let i=0; i<map.layers.length; i++) layer = map.createLayer(i);
 
+    this.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);   
+
+    this.gameObjectHandler.create();
     this.client.requestJoin();
   }
 
   update() {
     let player = this.gameObjectHandler.getPlayer(this.myID);   
+    if(!player) return;    
+    
+    this.physics.arcade.collide(player, this.gameObjectHandler.players, this.gameObjectHandler.handleCollision, null, this);
+
+    this.handleInput(player);
+  }
+
+  handleInput(player) {
     let moved = false;
-
-    if(!player) return;     
-
+    
     if(this.input.keyboard.isDown(Phaser.KeyCode.W)) {
-      player.y -= this.speed;
+      player.y -= this.moveSpeed;
       moved = true;    
     }
 
     if(this.input.keyboard.isDown(Phaser.KeyCode.A)) {
-      player.x -= this.speed;
+      player.x -= this.moveSpeed;
       moved = true;        
     }
     
     if(this.input.keyboard.isDown(Phaser.KeyCode.S)) {
-      player.y += this.speed;
+      player.y += this.moveSpeed;
       moved = true;         
     }
 
     if(this.input.keyboard.isDown(Phaser.KeyCode.D)) {
-      player.x += this.speed;
+      player.x += this.moveSpeed;
       moved = true;      
     }   
     
     if(moved) this.client.sendMove(player.x, player.y); 
   }
 }
+
+export default Game
