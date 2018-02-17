@@ -27,6 +27,7 @@ class GameObjectHandler {
 
   movePlayer(id, x, y) {
     let player = this.getPlayer(id);
+    if(!player) return;
 
     let distance = Phaser.Math.distance(player.x, player.y, x, y);
     let duration = this.game.moveSpeed/2;
@@ -37,8 +38,10 @@ class GameObjectHandler {
   }
 
   removePlayer(id) {
-    this.getPlayer(id).destroy();
-    this.players.kill(this.getPlayer(id));
+    if(this.getPlayer(id)) {
+      this.getPlayer(id).destroy();
+      this.players.kill(this.getPlayer(id));
+    }
   }
 
   handleCollision(player1, player2) {
