@@ -38,10 +38,10 @@ class GameObjectHandler {
   }
 
   removePlayer(id) {
-    if(this.getPlayer(id)) {
-      this.getPlayer(id).destroy();
-      this.players.kill(this.getPlayer(id));
-    }
+    if(!this.getPlayer(id)) return;
+
+    this.getPlayer(id).destroy();
+    delete this.getPlayer(id);
   }
 
   handleCollision(player1, player2) {
