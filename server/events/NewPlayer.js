@@ -10,13 +10,13 @@ class NewPlayerEvent {
         y: game.rand(100, 400)
       }
 
-      socket.emit('myid', {id: game.lastPlayerID});
-      socket.emit('allplayers', game.getAllPlayers());
-      socket.broadcast.emit('newplayer', socket.player);
+      socket.emit('myid', {id: game.lastPlayerID})
+      socket.emit('allplayers', game.getAllPlayers())
+      socket.broadcast.emit('newplayer', socket.player)
 
-      new MoveEvent(game, socket);
-      new DisconnectEvent(game, socket);
-    });
+      new MoveEvent(game, socket)
+      new DisconnectEvent(game, socket)
+    })
   }
 }
 

@@ -1,8 +1,8 @@
 class DisconnectEvent {
   constructor(game, socket) {
     socket.on('disconnect', () => {
-      game.io.emit('remove', socket.player.id);
-    });
+      game.io.emit('remove', socket.player.id)
+    })
   }
 }
 
