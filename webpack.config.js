@@ -1,7 +1,7 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-var path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+var path = require('path')
 
 var config = {
   target: 'web',
@@ -28,4 +28,4 @@ var config = {
   ]
 }
 
-module.exports = config;
+module.exports = config
